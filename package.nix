@@ -31,6 +31,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     autoreconfHook
     pkg-config
+  ] ++ lib.optionals (!minimum-gnuapl-build) [
     postgresql.pg_config
   ];
 
