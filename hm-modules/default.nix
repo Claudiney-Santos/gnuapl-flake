@@ -10,14 +10,18 @@ let
   inherit (lib)
     mkEnableOption
     mkOption
-    mkPackageOption
     mkIf
     ;
 in
 {
   options.programs.gnuapl = {
     enable = mkEnableOption "GNU APL interpreter";
-    package = mkPackageOption { default = self.packages."${pkgs.stdenv.hostPlatform.system}".default; };
+    package = mkOption {
+      type = lib.types.package;
+      default = self.packages."${pkgs.stdenv.hostPlatform.system}".default;
+      defaultText = lib.literalExpression "gnuapl-flake.packages.${pkgs.stdenv.hostPlatform.system}.default";
+      description = "Package to use for GNU APL. Set as null to disable.";
+    };
     keyboardLayout = mkOption {
       type = lib.types.nullOr lib.types.str;
       default = "us";
