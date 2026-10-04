@@ -18,13 +18,17 @@
   pcre2,
 }:
 
+let
+  rev = "2112";
+in
+
 stdenv.mkDerivation (finalAttrs: {
   pname = "gnuapl";
-  version = "2.0.0";
+  version = "2.0.1-r${rev}";
 
   src = fetchsvn {
+    inherit rev;
     url = "http://svn.savannah.gnu.org/svn/apl/trunk";
-    rev = "2112";
     sha256 = "BX0pDRwIzzvDlk6p534Q6OD6RTt/OpG5Swnum9hrBE8=";
   };
 
