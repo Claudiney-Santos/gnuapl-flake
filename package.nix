@@ -19,7 +19,7 @@
 }:
 
 let
-  rev = "2112";
+  rev = "2164";
 in
 
 stdenv.mkDerivation (finalAttrs: {
@@ -29,13 +29,14 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchsvn {
     inherit rev;
     url = "http://svn.savannah.gnu.org/svn/apl/trunk";
-    sha256 = "BX0pDRwIzzvDlk6p534Q6OD6RTt/OpG5Swnum9hrBE8=";
+    sha256 = "cbPyorZjowbSti88Im3/FwoDO4bDAVtF93UTJ/GYt2w=";
   };
 
   nativeBuildInputs = [
     autoreconfHook
     pkg-config
-  ] ++ lib.optionals (!minimum-gnuapl-build) [
+  ]
+  ++ lib.optionals (!minimum-gnuapl-build) [
     postgresql.pg_config
   ];
 
